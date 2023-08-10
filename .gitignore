@@ -4,3 +4,4 @@ env
 model/data/*
 !model/data/banger_accounts.csv
 nodemodules
+.history/
