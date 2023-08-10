@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config: Config = {
   content: [
@@ -8,14 +9,16 @@ const config: Config = {
   ],
   darkMode: "class",
   theme: {
+    fontFamily: {
+      mono: ["AnonPro", ...defaultTheme.fontFamily.mono],
+    },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: "rgba(var(--color-primary), 0.8)",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
