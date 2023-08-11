@@ -5,7 +5,6 @@ import { useChat } from "ai/react";
 
 export default function BangerModal() {
   // const [darkMode, setDarkMode] = useState<boolean>(true);
-
   const {
     messages,
     input: tweetIdea,
@@ -14,7 +13,21 @@ export default function BangerModal() {
     isLoading,
   } = useChat({
     api: "/api/banger",
+    // initialMessages: [
+    //   {
+    //     content:
+    //       "Sorry babe I can't listening how was your day ever again. I lose my edge context-switching to your toxic work environment",
+    //     role: "user",
+    //     id: "ISgO141",
+    //   },
+    //   {
+    //     id: "XEAnGmj",
+    //     content:
+    //       "\"I just saw someone walking around with a sign that said 'I'm an undefined variable' and I couldn't help but think, same.",
+    //   },
+    // ],
   });
+  console.log(messages);
   return (
     <div className="text-center dark:text-white">
       {/* <button
@@ -50,9 +63,9 @@ export default function BangerModal() {
               className="border-none p-2 resize-none outline-none font-mono text-lg bg-transparent dark:text-black"
             />
             <button
-              className="bg-primary text-white p-2 text-center font-mono rounded-md cursor-pointer m-1 disabled:opacity-50"
+              className="bg-primary text-white p-2 text-center font-mono rounded-md cursor-pointer m-1 disabled:opacity-50 disabled:cursor-not-allowed"
               type="submit"
-              disabled={isLoading}
+              disabled={isLoading || !tweetIdea}
             >
               Generate Banger Tweet
             </button>
@@ -61,7 +74,6 @@ export default function BangerModal() {
           <div className="w-1/3 m-auto text-center pt-5">
             {messages.map((m) => (
               <div key={m.id}>
-                {m.role === "user" ? "User: " : "AI: "}
                 {m.content}
               </div>
             ))}
