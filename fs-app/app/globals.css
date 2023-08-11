@@ -24,3 +24,22 @@
     --color-primary: 29, 161, 242;
   }
 }
+
+div::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: #082f4779;
+  border-radius: 10px;
+}
+
+div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+div::-webkit-scrollbar-thumb:hover {
+  background: #0a3d5d;
+}
+
