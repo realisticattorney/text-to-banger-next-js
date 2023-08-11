@@ -72,13 +72,6 @@ export default function BangerModal() {
       </button> */}
       <header className="min-h-screen flex flex-col justify-center text-white bg-gradient-to-br from-gray-800 to-gray-900 dark:from-white dark:to-gray-200">
         <div className="flex justify-center w-full">
-          {/* <Image
-            src="/images/TTB.png"
-            className="h-14 mb-8 pointer-events-none animate-spin"
-            alt="logo"
-            width={100}
-            height={100}
-          /> */}
           <h1 className="font-mono mb-8 text-4xl font-bold text-primary">
             text-to-banger
           </h1>
@@ -101,10 +94,30 @@ export default function BangerModal() {
               type="submit"
               disabled={isLoading || !tweetIdea}
             >
-              Generate Banger Tweet
+              {isLoading ? (
+                <svg
+                  className="animate-spin h-5 w-5 mx-auto"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+              ) : (
+                <p>Generate Banger Tweet</p>
+              )}
             </button>
           </form>
-          {isLoading && <p>generating a banger...</p>}
           <div
             className="m-auto pt-5 mt-4 rounded-lg"
             style={{
