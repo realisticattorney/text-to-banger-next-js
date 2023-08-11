@@ -20,25 +20,17 @@ export async function POST(req: Request) {
 
   // Request the OpenAI API for the response based on the prompt
   const response = await openai.createCompletion({
-    model: "text-davinci-003",
+    model: "text-davinci-003", //You can choose a different engine based on your subscription
     // stream: true,
     prompt: buildPrompt(tweet),
     max_tokens: 100,
-    temperature: 0.7,
+    temperature: 0.7, //Adjust the temperature for more randomness (0.2 to 1.0)
     top_p: 1,
   });
-
-  // Convert the response into a friendly text-stream
-  // const stream = OpenAIStream(response);
-
-  // Respond with the stream
-  // return new StreamingTextResponse(stream);
-
   // Respond with the JSON
   const json = await response.json();
 
   let bangerTweet = json.choices[0].text;
-  
 
   bangerTweet = bangerTweet.replace(/#\S+/g, ""); // Remove hashtags
   bangerTweet = bangerTweet.replace(/^"|"$|^'|'$/g, ""); // Remove starting and ending single and double quotes
@@ -46,4 +38,11 @@ export async function POST(req: Request) {
 
   // Respond with the processed banger tweet
   return new Response(bangerTweet);
+
+  //** Uncomment the following to stream the response instead of returning it as JSON. ie When you're ~sure it won't return any hashtags **//
+  // Convert the response into a friendly text-stream
+  // const stream = OpenAIStream(response);
+
+  // Respond with the stream
+  // return new StreamingTextResponse(stream);
 }

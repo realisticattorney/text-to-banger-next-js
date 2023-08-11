@@ -62,7 +62,7 @@ export default function BangerModal() {
       },
     ],
   });
-  
+
   console.log(messages);
   return (
     <div className="text-center dark:text-white">
@@ -96,7 +96,7 @@ export default function BangerModal() {
               type="submit"
               disabled={isLoading || !tweetIdea}
             >
-              {true ? (
+              {isLoading ? (
                 <Image
                   src="spinner.svg"
                   className="animate-spin mx-auto"
