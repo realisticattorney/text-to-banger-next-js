@@ -1,7 +1,8 @@
 "use client";
 
+import { classNames } from "@/utils/classNames";
 import { useChat } from "ai/react";
-// import Image from "next/image";
+import Image from "next/image";
 
 export default function BangerModal() {
   // const [darkMode, setDarkMode] = useState<boolean>(true);
@@ -61,6 +62,7 @@ export default function BangerModal() {
       },
     ],
   });
+  
   console.log(messages);
   return (
     <div className="text-center dark:text-white">
@@ -94,49 +96,28 @@ export default function BangerModal() {
               type="submit"
               disabled={isLoading || !tweetIdea}
             >
-              {isLoading ? (
-                <svg
-                  className="animate-spin h-5 w-5 mx-auto"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                  />
-                </svg>
+              {true ? (
+                <Image
+                  src="spinner.svg"
+                  className="animate-spin mx-auto"
+                  alt="spinner"
+                  width={20}
+                  height={20}
+                />
               ) : (
                 <p>Generate Banger Tweet</p>
               )}
             </button>
           </form>
-          <div
-            className="m-auto pt-5 mt-4 rounded-lg"
-            style={{
-              maxWidth: "500px",
-              height: "400px",
-              overflowY: "auto",
-              overflowX: "hidden",
-            }}
-          >
+          <div className="m-auto pt-5 mt-4 rounded-lg max-w-md h-96 overflow-y-auto overflow-x-hidden">
             {messages.map((m, index) => (
               <div
                 key={m.id}
-                className={`p-2 text-left my-2 text-gray-300 ${
-                  m.role === "user" ? "ml-5" : "mr-5"
-                }`}
-                style={{
-                  backgroundColor: index % 2 === 0 ? "#092c4949" : "#094b8149",
-                  borderRadius: "10px",
-                }}
+                className={classNames(
+                  "p-2 text-left my-2 text-gray-300 rounded-md",
+                  m.role === "user" ? "ml-5" : "mr-5",
+                  index % 2 === 0 ? "bg-[#092c4949]" : "bg-[#094b8149]"
+                )}
               >
                 <strong>{m.role === "user" ? "User" : "AI"}:</strong>{" "}
                 {m.content}
